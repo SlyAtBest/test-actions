@@ -23,9 +23,6 @@ jobs:
       - name: Push and set upstream branch
         run: git push -u origin ${GITHUB_REF#refs/heads/}-build
         
-      - name: Pull any changes
-        run: git pull
-        
       # Runs a single command using the runners shell
       - name: Yarn install
         run: yarn install
