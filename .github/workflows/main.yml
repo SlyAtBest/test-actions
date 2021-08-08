@@ -20,8 +20,8 @@ jobs:
       - name: Setup new branch
         run: git checkout -b ${GITHUB_REF#refs/heads/}-build
         
-      - name: Set upstream branch
-        run: git branch -u origin ${GITHUB_REF#refs/heads/}-build
+      - name: Push and set upstream branch
+        run: git push -u origin ${GITHUB_REF#refs/heads/}-build
         
       - name: Pull any changes
         run: git pull
