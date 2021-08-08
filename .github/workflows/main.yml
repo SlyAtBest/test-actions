@@ -26,10 +26,10 @@ jobs:
         run: yarn build
         
       - name: Setup new branch
-        run: git checkout -b ${{ github.ref }}-build
+        run: git checkout -b ${{ GITHUB_REF##/* }}-build
         
       - name: Push new branch
-        run: git push -u origin ${{ github.ref }}-build
+        run: git push -u origin ${{ GITHUB_REF##/*}}-build
         
       - name: Commit build artifacts
         uses: EndBug/add-and-commit@v7
@@ -37,5 +37,5 @@ jobs:
           author_name: github-actions
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: 'Commit build artifacts'
-          branch: -b ${{github.ref}}-build
+          branch: -b ${{ GITHUB_REF##/* }}-build
           add: -f 'build/**'
