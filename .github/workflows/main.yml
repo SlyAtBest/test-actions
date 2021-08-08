@@ -16,26 +16,28 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-       
-      # Runs a single command using the runners shell
-      - name: Yarn install
-        run: yarn install
+      
+      - name: output branch name
+        run: echo ${GITHUB_REF}
+    # Runs a single command using the runners shell
+    # - name: Yarn install
+     #   run: yarn install
 
       # Runs a set of commands using the runners shell
-      - name: Yarn build
-        run: yarn build
+      #- name: Yarn build
+      #  run: yarn build
         
-      - name: Setup new branch
-        run: git checkout -b ${GITHUB_REF##/*}-build
+     # - name: Setup new branch
+     #   run: git checkout -b ${GITHUB_REF##/*}-build
         
-      - name: Push new branch
-        run: git push -u origin ${GITHUB_REF##/*}-build
+     # - name: Push new branch
+     #   run: git push -u origin ${GITHUB_REF##/*}-build
         
-      - name: Commit build artifacts
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: github-actions
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          message: 'Commit build artifacts'
-          branch: -b ${GITHUB_REF##/*}-build
-          add: -f 'build/**'
+     # - name: Commit build artifacts
+     #   uses: EndBug/add-and-commit@v7
+     #   with:
+     #     author_name: github-actions
+     #     author_email: 41898282+github-actions[bot]@users.noreply.github.com
+     #     message: 'Commit build artifacts'
+     #     branch: -b ${GITHUB_REF##/*}-build
+     #     add: -f 'build/**'
