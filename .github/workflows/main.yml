@@ -30,11 +30,11 @@ jobs:
       #- name: Yarn build
       #  run: yarn build
         
-     # - name: Setup new branch
-     #   run: git checkout -b ${GITHUB_REF##/*}-build
+      - name: Setup new branch
+        run: git checkout -b ${GITHUB_REF#refs/heads/}-build
         
-     # - name: Push new branch
-     #   run: git push -u origin ${GITHUB_REF##/*}-build
+      - name: Push new branch
+        run: git push -u origin ${GITHUB_REF#refs/heads/}-build
         
      # - name: Commit build artifacts
      #   uses: EndBug/add-and-commit@v7
