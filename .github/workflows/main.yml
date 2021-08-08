@@ -37,5 +37,5 @@ jobs:
           author_name: github-actions
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: 'Commit build artifacts'
-          branch: "${GITHUB_REF#refs/heads/}-build"
+          branch: '${GITHUB_REF#refs/heads/}-build'
           add: -f 'build/**'
