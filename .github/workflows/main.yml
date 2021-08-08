@@ -22,13 +22,14 @@ jobs:
         
       - name: try to access variable
         run: echo ${BRANCH}
-    # Runs a single command using the runners shell
-    # - name: Yarn install
-     #   run: yarn install
+      
+      # Runs a single command using the runners shell
+      - name: Yarn install
+        run: yarn install
 
       # Runs a set of commands using the runners shell
-      #- name: Yarn build
-      #  run: yarn build
+      - name: Yarn build
+        run: yarn build
         
       - name: Setup new branch
         run: git checkout -b ${GITHUB_REF#refs/heads/}-build
@@ -36,11 +37,11 @@ jobs:
       - name: Push new branch
         run: git push -u origin ${GITHUB_REF#refs/heads/}-build
         
-     # - name: Commit build artifacts
-     #   uses: EndBug/add-and-commit@v7
-     #   with:
-     #     author_name: github-actions
-     #     author_email: 41898282+github-actions[bot]@users.noreply.github.com
-     #     message: 'Commit build artifacts'
-     #     branch: -b ${GITHUB_REF##/*}-build
-     #     add: -f 'build/**'
+      - name: Commit build artifacts
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: github-actions
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: 'Commit build artifacts'
+          branch: ${GITHUB_REF#refs/heads/}-build
+          add: -f 'build/**'
