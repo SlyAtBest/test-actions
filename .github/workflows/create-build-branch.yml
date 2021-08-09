@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run a multi-line script
+        if: ${{ !endsWith( github.ref, '-build') }}
         run: |
           export BRANCH=${GITHUB_REF#refs/heads/}-build
           git checkout -b $BRANCH
