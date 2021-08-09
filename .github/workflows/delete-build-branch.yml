@@ -13,4 +13,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Delete Build Branch
-        run: git push origin --delete ${github.ref#refs/heads/}-build
+        run: git push origin --delete ${GITHUB_REF#refs/heads/}-build
