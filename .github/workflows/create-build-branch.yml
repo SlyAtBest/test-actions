@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run a multi-line script
+      - name: Create Build Branch
         run: |
           export BRANCH=${GITHUB_REF#refs/heads/}-build
           git checkout -b $BRANCH
