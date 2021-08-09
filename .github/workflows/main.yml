@@ -16,20 +16,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Setup new branch
-        run: git checkout -b ${GITHUB_REF#refs/heads/}-build
         
-      - name: Push and set upstream branch
-        run: git push -u origin ${GITHUB_REF#refs/heads/}-build
+      - name: Checkout build branch
+        run: git checkout ${GITHUB_REF#refs/heads/}-build
         
-      # Runs a single command using the runners shell
-      - name: Yarn install
-        run: yarn install
-
-      # Runs a set of commands using the runners shell
-      - name: Yarn build
-        run: yarn build
+      # Install and build
+      - name: Yarn install and build
+        run: |
+          yarn install
+          yarn build
         
       - name: Commit build artifacts
         uses: EndBug/add-and-commit@v7
