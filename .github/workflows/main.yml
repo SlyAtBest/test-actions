@@ -14,6 +14,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
+      - name: Wait 30 seconds to allow for the branch to be created if new
+        run: sleep 30
+        shell: bash
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         
@@ -26,11 +31,11 @@ jobs:
           yarn install
           yarn build
         
-      - name: Commit build artifacts
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: github-actions
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          message: 'Commit build artifacts'
-          push: origin "${GITHUB_REF#refs/heads/}-build"
-          add: -f 'build/**'
+      #- name: Commit build artifacts
+      #  uses: EndBug/add-and-commit@v7
+      #  with:
+      #    author_name: github-actions
+      #    author_email: 41898282+github-actions[bot]@users.noreply.github.com
+      #    message: 'Commit build artifacts'
+      #    push: origin "${GITHUB_REF#refs/heads/}-build"
+      #    add: -f 'build/**'
