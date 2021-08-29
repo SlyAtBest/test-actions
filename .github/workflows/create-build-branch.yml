@@ -6,13 +6,13 @@ on:
 
 jobs:
   build:
-    if: ${{ !endsWith( github.ref, '-build') }}
+    if: ${{ !endsWith( github.event.ref, '-build') }}
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - name: Create Build Branch
         run: |
-          export BRANCH=${GITHUB_REF#refs/heads/}-build
+          export BRANCH=${{ github.event.ref }}-build
           git checkout -b $BRANCH
           git push -u origin $BRANCH
