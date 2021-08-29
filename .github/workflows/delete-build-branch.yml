@@ -14,4 +14,6 @@ jobs:
 
       - name: Delete Build Branch
         #run: git push origin --delete ${GITHUB_REF#refs/heads/}-build
-        run: echo "Clean up for branch ${{ github.event.ref }}-build"
+        run: |
+          echo "Clean up for branch ${{ github.event.ref }}-build"
+          echo "Old clean up method ${GITHUB_REF#refs/heads/}-build"
