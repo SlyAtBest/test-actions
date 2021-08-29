@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
         
       - name: Checkout build branch
-        run: git checkout ${{ github.event.ref }-build
+        run: git checkout ${{ github.event.ref }}-build
         
       # Install and build
       - name: Yarn install and build
