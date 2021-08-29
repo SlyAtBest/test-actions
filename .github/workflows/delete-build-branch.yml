@@ -6,14 +6,11 @@ on:
 
 jobs:
   build:
-    if: ${{ !endsWith( github.ref, '-build') }}
+    if: ${{ !endsWith( github.event.ref, '-build') }}
     runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v2
 
       - name: Delete Build Branch
-        #run: git push origin --delete ${GITHUB_REF#refs/heads/}-build
-        run: |
-          echo "Clean up for branch ${{ github.event.ref }}-build"
-          echo "Old clean up method ${GITHUB_REF#refs/heads/}-build"
+        run: git push origin --delete ${{ github.event.ref }}-build
