@@ -15,9 +15,11 @@ jobs:
         run: |
           if [ "${{ github.event.ref }}" == "refs/heads/*" ]
           then
-            export BRANCH=${${{ github.event.ref }}#refs/heads/}-branch
+            export BRANCH=${${{ github.event.ref }}#refs/heads/}-build
+            echo "Stripping prefix: $BRANCH"
           else
-            export BRANCH=${{ github.event.ref }}-branch
+            export BRANCH=${{ github.event.ref }}-build
+            echo "No prefix: $BRANCH
           fi
 
           git checkout -b $BRANCH
