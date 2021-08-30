@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create Build Branch
         run: |
-          export BRANCH=${${{ github.event.ref }}#refs/heads/}-build
+          export UNPARSED_BRANCH=${{ github.event.ref }}
+          export BRANCH=${UNPARSED_BRANCH#refs/heads/}-build
           git checkout -b $BRANCH
           git push -u origin $BRANCH
