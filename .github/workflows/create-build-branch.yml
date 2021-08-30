@@ -15,7 +15,7 @@ jobs:
         run: |
           if [ "${{ github.event.ref }}" == "refs/heads/*" ]
           then
-            export BRANCH=${{ github.event.ref}#refs/heads/}-branch
+            export BRANCH=${{ github.event.ref }#refs/heads/}-branch
           else
             export BRANCH=${{ github.event.ref }}-branch
           fi
