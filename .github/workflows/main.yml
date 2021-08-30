@@ -24,8 +24,9 @@ jobs:
         
       - name: Checkout build branch
         run: |
-          git pull
-          git checkout ${{ github.event.ref }}-build
+          export UNPARSED_BRANCH=${{ github.event.ref }}
+          export BRANCH=${BRANCH#refs/heads/}-build
+          git checkout $BRANCH
         
       # Install and build
       - name: Yarn install and build
