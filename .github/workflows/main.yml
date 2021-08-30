@@ -25,7 +25,7 @@ jobs:
       - name: Checkout build branch
         run: |
           export UNPARSED_BRANCH=${{ github.event.ref }}
-          export BRANCH=${BRANCH#refs/heads/}-build
+          export BRANCH=${UNPARSED_BRANCH#refs/heads/}-build
           git checkout $BRANCH
         
       # Install and build
