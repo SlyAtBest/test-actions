@@ -15,5 +15,6 @@ jobs:
         run: |
           export UNPARSED_BRANCH=${{ github.event.ref }}
           export BRANCH=${UNPARSED_BRANCH#refs/heads/}-build
+          git branch
           git checkout -b $BRANCH
           git push -u origin $BRANCH
