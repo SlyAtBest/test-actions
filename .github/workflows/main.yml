@@ -26,8 +26,7 @@ jobs:
         run: |
           export UNPARSED_BRANCH=${{ github.event.ref }}
           export PARSED_BRANCH=${UNPARSED_BRANCH#refs/heads/}
-          git branch
-          git fetch
+          git pull
           git checkout ${PARSED_BRANCH}-build
           git merge $PARSED_BRANCH
         
