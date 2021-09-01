@@ -21,12 +21,13 @@ jobs:
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
         
       - name: Checkout build branch
         run: |
           export UNPARSED_BRANCH=${{ github.event.ref }}
           export PARSED_BRANCH=${UNPARSED_BRANCH#refs/heads/}
-          git pull
           git checkout ${PARSED_BRANCH}-build
           git pull
           git merge $PARSED_BRANCH
