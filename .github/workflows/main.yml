@@ -29,7 +29,6 @@ jobs:
           export UNPARSED_BRANCH=${{ github.event.ref }}
           export PARSED_BRANCH=${UNPARSED_BRANCH#refs/heads/}
           git checkout ${PARSED_BRANCH}-build
-          git pull
           git merge $PARSED_BRANCH
         
       # Install and build
