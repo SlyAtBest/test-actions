@@ -5,14 +5,11 @@ name: CI
 # Controls when the action will run. 
 on: [push, pull_request, workflow_dispatch]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    if: ${{ !endsWith( github.event.ref, '-build') }}
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     
       - name: Wait 30 seconds to allow for the branch to be created if new
@@ -24,18 +21,21 @@ jobs:
         with:
           fetch-depth: 0
         
-      - name: Checkout build branch
+      - name: Checkout build branch, merge in any changes and push
         run: |
           export UNPARSED_BRANCH=${{ github.event.ref }}
           export PARSED_BRANCH=${UNPARSED_BRANCH#refs/heads/}
-          git checkout ${PARSED_BRANCH}-build
+          export BUILD_BRANCH=${PARSED-BRANCH}-build
+          git checkout ${BUILD_BRANCH}
           git merge $PARSED_BRANCH
+          git push -u origin ${BUILD_BRANCH}
         
-      # Install and build
       - name: Yarn install and build
         run: |
           yarn install
           yarn build
+          
+    
         
       #- name: Commit build artifacts
       #  uses: EndBug/add-and-commit@v7
