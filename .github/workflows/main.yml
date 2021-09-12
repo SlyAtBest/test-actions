@@ -35,7 +35,15 @@ jobs:
           yarn install
           yarn build
           
-    
+      - name: Add build output and commit
+        run: |
+          export UNPARSED_BRANCH=${{ github.event.ref }}
+          export PARSED_BRANCH=${UNPARSED_BRANCH#refs/heads/}
+          export BUILD_BRANCH=${PARSED_BRANCH}-build
+          git checkout $BUILD_BRANCH
+          git add -f build/**
+          git commit -m "Commit build artifacts"
+          git push -u origin $BUILD_BRANCH
         
       #- name: Commit build artifacts
       #  uses: EndBug/add-and-commit@v7
