@@ -49,12 +49,3 @@ jobs:
           git add -f build/**
           git commit -m "Commit build artifacts"
           git push -u origin $BUILD_BRANCH
-        
-      #- name: Commit build artifacts
-      #  uses: EndBug/add-and-commit@v7
-      #  with:
-      #    author_name: github-actions
-      #    author_email: 41898282+github-actions[bot]@users.noreply.github.com
-      #    message: 'Commit build artifacts'
-      #    push: origin "${GITHUB_REF#refs/heads/}-build"
-      #    add: -f 'build/**'
