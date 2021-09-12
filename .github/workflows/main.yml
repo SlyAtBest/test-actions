@@ -25,10 +25,10 @@ jobs:
         run: |
           export UNPARSED_BRANCH=${{ github.event.ref }}
           export PARSED_BRANCH=${UNPARSED_BRANCH#refs/heads/}
-          export BUILD_BRANCH=${PARSED-BRANCH}-build
-          git checkout ${PARSED-BRANCH}-build
+          export BUILD_BRANCH=${PARSED_BRANCH}-build
+          git checkout $BUILD_BRANCH
           git merge $PARSED_BRANCH
-        # git push -u origin ${BUILD_BRANCH}
+          git push -u origin $BUILD_BRANCH
         
       - name: Yarn install and build
         run: |
